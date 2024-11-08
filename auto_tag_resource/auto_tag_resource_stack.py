@@ -2,6 +2,7 @@ from aws_cdk import (
     CfnParameter,
     Duration,
     Stack,
+    Aws,
     aws_iam as _iam,
     aws_events as _events,
     aws_events_targets as _targets,
@@ -27,7 +28,7 @@ class AutoTagResourceStack(Stack):
 
         # create role for lambda function
         lambda_role = _iam.Role(self, "lambda_role",
-            role_name = "resource-tagging-role",
+            role_name = f"resource-tagging-role-{Aws.REGION}",
             assumed_by=_iam.ServicePrincipal("lambda.amazonaws.com"))
 
         lambda_role.add_managed_policy(_iam.ManagedPolicy.from_aws_managed_policy_name("service-role/AWSLambdaBasicExecutionRole"))
