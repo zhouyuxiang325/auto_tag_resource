@@ -17,7 +17,7 @@ for region in $regions; do
     # 导出 CDK_REGION 环境变量
     export CDK_REGION=$region
     cdk bootstrap
-    cdk deploy --require-approval never --parameters tags='{"map-migrated": $tag}'
+    cdk deploy --require-approval never --parameters tags="{\"map-migrated\":\"$tag\"}"
 
     echo "Deployment completed for region: $region"
     echo ""
